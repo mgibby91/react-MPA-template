@@ -5,10 +5,13 @@ export default function Nav() {
 
   return (
     <nav className='nav-main-container'>
-      <h3>Webiste Logo</h3>
+      <h3>Website Logo</h3>
       <ul className="nav-links">
         <Link to='/'>
           <li>Home</li>
+        </Link>
+        <Link to='/registration'>
+          <li>Registration</li>
         </Link>
         <Link to='/page1'>
           <li>Page1</li>
