@@ -13,6 +13,9 @@ export default function Nav() {
         <Link to='/registration'>
           <li>Registration</li>
         </Link>
+        <Link to='/login'>
+          <li>Login</li>
+        </Link>
         <Link to='/page1'>
           <li>Page1</li>
         </Link>

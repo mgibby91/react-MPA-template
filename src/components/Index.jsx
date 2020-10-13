@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export default function Index(props) {
 
-  console.log('indexProps', props);
+  // console.log('indexProps', props);
 
   useEffect(() => {
 
@@ -12,10 +12,8 @@ export default function Index(props) {
 
     Promise.all([promiseIndex])
       .then(all => {
-        console.log('all', all);
 
         let [indexData] = all;
-        console.log('indexDatabefore', indexData);
 
         indexData = indexData.data;
         console.log('indexdataafter', indexData);

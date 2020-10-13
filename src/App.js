@@ -3,9 +3,11 @@ import './App.css';
 import Nav from './components/Nav';
 import Index from './components/Index';
 import Registration from './components/registration/Registration';
+import Login from './components/login/Login';
 import Page1 from './components/page1/Page1';
 import Page2 from './components/page2/Page2';
 import Page3 from './components/page3/Page3';
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,9 +22,18 @@ function App() {
   });
 
   function setSuccessfulUser(userData) {
-    console.log('set success user', userData);
+    // console.log('set success user', userData);
     setState({ ...state, loggedInStatus: 'LOGGED_IN', user: userData })
   }
+
+  function checkLoginStatus() {
+    axios.get('/api/logged_in')
+      .then(res => {
+        console.log('loggedinRes', res);
+      })
+  }
+
+  checkLoginStatus();
 
   return (
     <Router>
@@ -44,6 +55,16 @@ function App() {
             exact
             render={props => (
               <Registration
+                {...props}
+                setSuccessfulUser={setSuccessfulUser}
+              />
+            )}
+          />
+          <Route
+            path='/login'
+            exact
+            render={props => (
+              <Login
                 {...props}
                 setSuccessfulUser={setSuccessfulUser}
               />
