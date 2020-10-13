@@ -27,7 +27,7 @@ export default function Index(props) {
   }, [])
 
   return (
-    <div>Home! {props.someData}</div>
+    <div>Home! {props.loggedInStatus}</div>
   )
 
 }

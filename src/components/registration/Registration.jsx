@@ -16,9 +16,18 @@ export default function Registration(props) {
     axios.post('/api/register', {
       email: state.email,
       password: state.password,
+    }, {
+      withCredentials: true
     })
       .then(res => {
-        console.log(res);
+        console.log('reg response', res);
+        // set user in App
+        props.setSuccessfulUser(res.data[0]);
+        // redirect to Index
+        props.history.push('/');
+      })
+      .catch(err => {
+        console.log('reg error', err);
       })
 
     event.preventDefault();

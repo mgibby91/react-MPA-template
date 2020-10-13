@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import Index from './components/Index';
@@ -14,7 +14,15 @@ import {
 
 function App() {
 
-  const someData = 'this is some data';
+  const [state, setState] = useState({
+    loggedInStatus: 'NOT_LOGGED_IN',
+    user: {}
+  });
+
+  function setSuccessfulUser(userData) {
+    console.log('set success user', userData);
+    setState({ ...state, loggedInStatus: 'LOGGED_IN', user: userData })
+  }
 
   return (
     <Router>
@@ -25,9 +33,22 @@ function App() {
             path='/'
             exact
             render={props => (
-              <Index {...props} someData={someData} />
-            )} />
-          <Route path='/registration' component={Registration} />
+              <Index
+                {...props}
+                loggedInStatus={state.loggedInStatus}
+              />
+            )}
+          />
+          <Route
+            path='/registration'
+            exact
+            render={props => (
+              <Registration
+                {...props}
+                setSuccessfulUser={setSuccessfulUser}
+              />
+            )}
+          />
           <Route path='/page1' component={Page1} />
           <Route path='/page2' component={Page2} />
           <Route path='/page3' component={Page3} />
