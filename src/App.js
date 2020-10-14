@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import Index from './components/Index';
@@ -17,23 +17,38 @@ import {
 function App() {
 
   const [state, setState] = useState({
-    loggedInStatus: 'NOT_LOGGED_IN',
+    loggedIn: false,
     user: {}
   });
 
-  function setSuccessfulUser(userData) {
-    // console.log('set success user', userData);
-    setState({ ...state, loggedInStatus: 'LOGGED_IN', user: userData })
-  }
-
-  function checkLoginStatus() {
+  useEffect(() => {
     axios.get('/api/logged_in')
       .then(res => {
         console.log('loggedinRes', res);
+        if (JSON.stringify(res.data.userData) !== '{}') {
+          setState({ loggedInStatus: true, user: res.data })
+        }
       })
+      .catch(err => {
+        console.log('logged in err', err);
+      })
+  }, []);
+
+  function setSuccessfulUser(userData) {
+    // console.log('set success user', userData);
+    setState({ ...state, loggedInStatus: true, user: userData })
   }
 
-  checkLoginStatus();
+  function handleLogout() {
+    axios.get('/api/logout')
+      .then(res => {
+        console.log('logout res', res);
+        setState({ loggedIn: false, user: {} })
+      })
+      .catch(err => {
+        console.log('logout err', err);
+      })
+  }
 
   return (
     <Router>
@@ -47,6 +62,7 @@ function App() {
               <Index
                 {...props}
                 loggedInStatus={state.loggedInStatus}
+                handleLogout={handleLogout}
               />
             )}
           />

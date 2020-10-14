@@ -12,9 +12,7 @@ export default function Index(props) {
 
     Promise.all([promiseIndex])
       .then(all => {
-
         let [indexData] = all;
-
         indexData = indexData.data;
         console.log('indexdataafter', indexData);
       })
@@ -22,10 +20,15 @@ export default function Index(props) {
         console.log('indexError', err);
       })
 
-  }, [])
+  }, []);
 
   return (
-    <div>Home! {props.loggedInStatus}</div>
+    <div className='home-main-container'>
+      Home!
+      {props.loggedInStatus && (
+        <button className='logout-btn' onClick={() => props.handleLogout()}>Logout</button>
+      )}
+    </div>
   )
 
 }
