@@ -4,15 +4,14 @@ import Nav from './components/Nav';
 import Index from './components/Index';
 import Registration from './components/registration/Registration';
 import Login from './components/login/Login';
-import Page1 from './components/page1/Page1';
-import Page2 from './components/page2/Page2';
-import Page3 from './components/page3/Page3';
+import Chat from './components/chat/Chat';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
+
 
 function App() {
 
@@ -86,9 +85,7 @@ function App() {
               />
             )}
           />
-          <Route path='/page1' component={Page1} />
-          <Route path='/page2' component={Page2} />
-          <Route path='/page3' component={Page3} />
+          <Route path='/chat' component={Chat} />
         </Switch>
       </div>
     </Router>

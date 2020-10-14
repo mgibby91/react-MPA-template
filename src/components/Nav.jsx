@@ -16,14 +16,8 @@ export default function Nav() {
         <Link to='/login'>
           <li>Login</li>
         </Link>
-        <Link to='/page1'>
-          <li>Page1</li>
-        </Link>
-        <Link to='/page2'>
-          <li>Page2</li>
-        </Link>
-        <Link to='/page3'>
-          <li>Page3</li>
+        <Link to='/chat'>
+          <li>Chat</li>
         </Link>
       </ul>
     </nav>
