@@ -55,7 +55,6 @@ export default function Login(props) {
           onChange={(event) => setState({ ...state, password: event.target.value })}
           required
         />
-
         <button type='submit'>Login</button>
       </form>
     </div>
